@@ -9,7 +9,7 @@ metadata:
     type: local
 spec:
   capacity:
-    storage: 5Gi   # Adjust size as needed
+    storage: 1Gi   # Adjust size as needed
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain  # Keeps data after PVC deletion
@@ -27,7 +27,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi   # Must match PV capacity
+      storage: 1Gi   # Must match PV capacity
   selector:
     matchLabels:
       app: postgres  # Binds to PV with this label
