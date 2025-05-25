@@ -2,18 +2,18 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: postgres-local-pv
-  namespace: vote
   labels:
     app: postgres
     type: local
 spec:
+  storageClassName: ""  # Explicitly empty to avoid default SC
   capacity:
-    storage: 1Gi   # Adjust size as needed
+    storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain  # Keeps data after PVC deletion
+  persistentVolumeReclaimPolicy: Retain
   local:
-    path: /home/luffy/test/a  # Directory on your node
+    path: /home/luffy/test/a  # Your specified path
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -21,4 +21,4 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - minikube  # Replace with actual node name (use `kubectl get nodes`)
+          - minikube  # Matches Minikube node name

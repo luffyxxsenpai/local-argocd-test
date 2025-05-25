@@ -1,17 +1,16 @@
-
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc
   namespace: vote
 spec:
+  storageClassName: ""  # Must match PV
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi   # Must match PV capacity
+      storage: 1Gi
   selector:
     matchLabels:
-      app: postgres  # Binds to PV with this label
-  volumeName: postgres-local-pv  # Explicitly targets our PV
+      app: postgres
+  volumeName: postgres-local-pv  # Direct binding
