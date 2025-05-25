@@ -13,7 +13,7 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   local:
-    path: /home/luffy/test/a  # Your specified path
+    path: /pgdata  # Your specified path
   nodeAffinity:
     required:
       nodeSelectorTerms:

@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vote-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/luffyxxsenpai/local-argocd-test
+    targetRevision: HEAD
+    path: .
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vote
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 3
+      backoff:
+        duration: "5s"
+        factor: 2
+        maxDuration: "3m"
